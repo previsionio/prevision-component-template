@@ -1,0 +1,18 @@
+name: name
+label: Label
+description: Samples the input dataset according to the `N` property
+inputs:
+- name: input_dataset_path
+  type: String
+  description: 'Path of the local file containing the Input data.'
+outputs:
+- name: output_dataset_path
+  type: String
+  description: 'Path to write the output data'
+implementation:
+  container:
+    command: [python, components/src/component.py]
+    args: [
+      --input-dataset-path, {inputPath: input_dataset_path},
+      --output-dataset-path, {outputPath: output_dataset_path},
+    ]
