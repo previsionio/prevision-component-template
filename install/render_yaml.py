@@ -69,7 +69,7 @@ if __name__ == '__main__':
     yaml_str += 'inputs:\n' + yaml.dump(yaml_template['inputs'], sort_keys=False)
     yaml_str += 'outputs:\n' + yaml.dump(yaml_template['outputs'], sort_keys=False)
 
-    yaml_str += 'implementation:\n  container:\n    command: [python, components/src/component.py]\n    '
+    yaml_str += 'implementation:\n  container:\n    command: [python, src/component.py]\n    '
     yaml_str += 'args: ' + yaml.dump(yaml_template['implementation']['container']['args'],
                                      sort_keys=False,
                                      default_flow_style=True)

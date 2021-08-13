@@ -16,6 +16,6 @@ outputs:
   description: Path to write the output data
 implementation:
   container:
-    command: [python, components/src/component.py]
+    command: [python, src/component.py]
     args: [--input-dataset-path, {inputPath: input_dataset_path}, --output-dataset-path, {outputPath: output_dataset_path},
   --arg1, {inputValue: arg1}]
