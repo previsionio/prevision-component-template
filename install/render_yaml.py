@@ -60,7 +60,7 @@ if __name__ == '__main__':
             {'inputValue': param_name}
         ]
 
-        yaml_template['implementation']['container']['args'].append(command_args)
+        yaml_template['implementation']['container']['args'] += command_args
 
     # custom way to dump the yaml, because the default parser doesn't format nested lists well
     desc_keys = {key: val for key, val in yaml_template.items() if key in {'name', 'label', 'description'}}
@@ -71,8 +71,8 @@ if __name__ == '__main__':
 
     yaml_str += 'implementation:\n  container:\n    command: [python, components/src/component.py]\n    '
     yaml_str += 'args: ' + yaml.dump(yaml_template['implementation']['container']['args'],
-                                            sort_keys=False,
-                                            default_flow_style=True)
+                                     sort_keys=False,
+                                     default_flow_style=True)
     with open('component.yaml', 'w') as stream:
         stream.write(yaml_str)
 

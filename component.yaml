@@ -9,7 +9,6 @@ inputs:
   label: arg1
   type: Integer
   is_property: true
-  default: 100
   description: One of the possible parameter of the function.
 outputs:
 - name: output_dataset_path
@@ -18,4 +17,5 @@ outputs:
 implementation:
   container:
     command: [python, components/src/component.py]
-    args: [--input-dataset-path, {inputPath: input_dataset_path}, --output-dataset-path, {outputPath: output_dataset_path}, [--arg1, {inputValue: arg1}]]
+    args: [--input-dataset-path, {inputPath: input_dataset_path}, --output-dataset-path, {outputPath: output_dataset_path},
+  --arg1, {inputValue: arg1}]
