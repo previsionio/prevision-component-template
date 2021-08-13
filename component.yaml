@@ -1,5 +1,5 @@
-name: sample_component
-label: Sample Component
+name: test_component
+label: Test component
 description: Long description.
 inputs:
 - name: input_dataset_path
@@ -11,8 +11,7 @@ inputs:
   is_property: true
   description: One of the possible parameter of the function.
 implementation:
-	container:
-		command: [python, components/src/component.py]
-		args:
-			[--input-dataset-path, {inputPath: input_dataset_path}, --output-dataset-path, {outputPath: output_dataset_path},
+  container:
+    command: [python, components/src/component.py]
+    args: [--input-dataset-path, {inputPath: input_dataset_path}, --output-dataset-path, {outputPath: output_dataset_path},
   [--arg1, {inputValue: arg1}]]

@@ -68,10 +68,18 @@ if __name__ == '__main__':
     yaml_str = yaml.safe_dump(desc_keys, sort_keys=False)
     yaml_str += 'inputs:\n' + yaml.dump(yaml_template['inputs'], sort_keys=False)
 
-    yaml_str += 'implementation:\n\tcontainer:\n\t\tcommand: [python, components/src/component.py]\n\t\t'
-    yaml_str += 'args:\n\t\t\t' + yaml.dump(yaml_template['implementation']['container']['args'],
+    yaml_str += 'implementation:\n  container:\n    command: [python, components/src/component.py]\n    '
+    yaml_str += 'args: ' + yaml.dump(yaml_template['implementation']['container']['args'],
                                             sort_keys=False,
                                             default_flow_style=True)
     with open('component.yaml', 'w') as stream:
         stream.write(yaml_str)
+
+    # testing it can be loaded
+    with open('component.yaml', 'r') as stream:
+        try:
+            yaml_template = yaml.safe_load(stream)
+        except Exception as e:
+            print('failed to load created .yaml:', e)
+
     print('Success, component.yaml written to ./component.yaml')
