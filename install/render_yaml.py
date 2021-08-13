@@ -74,3 +74,4 @@ if __name__ == '__main__':
                                             default_flow_style=True)
     with open('component.yaml', 'w') as stream:
         stream.write(yaml_str)
+    print('Success, component.yaml written to ./component.yaml')
