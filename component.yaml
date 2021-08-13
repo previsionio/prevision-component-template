@@ -10,6 +10,10 @@ inputs:
   type: Integer
   is_property: true
   description: One of the possible parameter of the function.
+outputs:
+- name: output_dataset_path
+  type: String
+  description: Path to write the output data
 implementation:
   container:
     command: [python, components/src/component.py]
