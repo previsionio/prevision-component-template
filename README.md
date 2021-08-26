@@ -18,7 +18,7 @@ properly in the docstring format, as well as typing all the
 parameters you might add in the function 
 (and keeping the `dataframe` as first argument and return value).
 
-Then run 
+Then you may run 
 
 ```shell script
 python install.render_yaml <component_name> <component_label>
