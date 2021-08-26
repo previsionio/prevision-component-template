@@ -14,9 +14,10 @@ In order to build a component and use it as a custom component in a pipeline, yo
 
 Note that only the Dockerfile and yaml file are mandatory 
 
-## What you gonna do ?
+## What you going to do ?
 
-Building a cusom component imply 6 steps : 
+Building a custom component implies 6 steps : 
+
 - Setup the env
 - Write a script with arguments
 - Test it locally
@@ -32,21 +33,18 @@ Building a cusom component imply 6 steps :
 
 ## Process
 
-Note that most of the component process is the same that kubeflow components :
-
-`https://www.kubeflow.org/docs/components/pipelines/sdk/component-development/`
-
+Note that most of the component process is the same that [kubeflow components](https://www.kubeflow.org/docs/components/pipelines/sdk/component-development/)
 
 ### Setup the env
 
 Clone this repo :
 
 ```
-git clone https://gitlab.com/com12/component-tutorial.git my-component
+git clone  https://github.com/previsionio/prevision-component-template.git my-component
 cd my-component
 ```
 
-Be sure to keep an isolated environment in order in order to not forget dependences.
+Be sure to keep an isolated environment in order in order to not forget any dependencies
 
 ```
 python3 -m venv env
