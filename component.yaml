@@ -1,21 +1,24 @@
-name: test_component
-label: Test component
-description: Long description.
+name: Example component
+label: An exampel component to bootstrap your dev
+description: This component is a very basic one that does nothing useful but meet all the requirements for a custom components
 inputs:
-- name: input_dataset_path
+- name: src
   type: String
   description: Path of the local file containing the Input data.
-- name: arg1
-  label: arg1
-  type: Integer
+- name: arg_1
+  label: Some parameter
+  type: String
+  description: A parameter used for the dataset transformation
   is_property: true
-  description: One of the possible parameter of the function.
 outputs:
-- name: output_dataset_path
+- name: dst
   type: String
   description: Path to write the output data
 implementation:
   container:
-    command: [python, src/component.py]
-    args: [--input-dataset-path, {inputPath: input_dataset_path}, --output-dataset-path, {outputPath: output_dataset_path},
-  --arg1, {inputValue: arg1}]
+    command: [python, /src/main.py]
+    args: [
+      --src, {inputPath: src},
+      --dst, {outputPath: dst}, 
+      --arg-1, {inputValue: arg_1}
+      ]
