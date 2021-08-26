@@ -34,7 +34,10 @@ Building a custom component implies 6 steps :
 ### Requirement
 
 * You need a gitlab or github account to install your own component 
-* You need to set it up in your account page ( in the "Federated Identity" tab)
+* You need to set it up in your profile page ( under the "Federated Identity" tab)
+
+
+![Accessing your profile](profile.png)
 
 ## Process
 
