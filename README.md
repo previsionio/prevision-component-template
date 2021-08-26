@@ -60,13 +60,13 @@ source env/bin/activate
 pip install -r requirements.txt
 ```
 
-You need a requirements.txt. A default one is provided.
-Create an empty one if your component does not have requirements
+You need a requirements.txt file to list all your python modules. A default one is provided 
 
 **All components must always have a requirements.txt file even if there is no requirements. If you have no requirements, update the Dockerfile to remove the install phase :**
 
 `RUN python -m pip install -r /requirements.txt`
 
+**or create an empty one if your component does not have requirements**
 
 Then test that requirements meet your needs :
 
@@ -74,18 +74,20 @@ Then test that requirements meet your needs :
 python src/main.py
 ```
 
-#### Write the script
+### Write the script
 
-When your is ready, you can write your script in main.py. Your script must use args as input. Each arguments of your script has to be written down in the component.yaml 
+When your is ready, you can write your script in main.py. You can change the name of this script but then you need to update it in the component.yaml file 
 
-#### Test your script
+Your script must use args as input ( see [this excellent tutorial about Command Line Interfaces](https://realpython.com/command-line-interfaces-python-argparse/)) then each arguments of your script has to be written down in the component.yaml.
+
+### Test your script
 
 There is two test to run before commiting your work.
 
-First check that using your code in commande line works with some data
+First check that using your code in commande line works with some data :
 
 ```
-python src/main.py -arg-1  --src ~/Documents/Dataset/Tabular/video_games/steam_game_train.csv  --dst  output/resultat.csv
+python src/main.py -arg-1 value1 --src ~/Documents/Dataset/Tabular/data.csv  --dst  output/resultat.csv
 ```
 
 Check that the command you used for test ( `python src/main.py` ) is the one provided in the yaml file and check the name of your args and the mandatory one
@@ -97,14 +99,13 @@ implementation:
     args: [
       --src, {inputPath: src},
       --dst, {outputPath: dst}, 
-      --req-col, {inputValue: req_col},
-      --storage-col, {inputValue: storage_col}
+      --arg-1, {inputValue: arg_1}
       ]
 ``` 
 
-All arguments of your scripts must be in the implementation section of the component.yaml AND they must be map with the inputs section.
+All arguments of your scripts must be in the implementation section of the component.yaml AND they must be mapped with the inputs section.
 
-The inputs section is what the user gonna see when using your component and the implementation section is the way you components is going to be ran when used in a scheduled pipeline
+The inputs section is what the user gonna see when using your component and the implementation section is the way you components is going to be ran when used in a scheduled pipeline.
 
 
 If you are a power user you can [install Docker](https://docs.docker.com/engine/install/ubuntu/) and you can check that your Dockerfile is ok with the following command
@@ -117,7 +118,7 @@ docker run -d  my-component
 
 Check that some basic  command line allow to run your transformation on test data :
 
-##### List your args in the yaml file
+### List your args in the yaml file
 
 A component.yaml file is provided for example.
 
@@ -126,7 +127,7 @@ The yaml file should reflect how to use your script :
 - how to pass the parameters :  implementation -> container -> command
 - how to map the parameters :  implementation -> container -> args
 
-The `name`, `label` and `description` are  what your user gonna see in the component library.
+The `name`, `label` and `description` are  what your user will see in the component library.
 
 The `inputs` are the description of your variable.
 
@@ -146,15 +147,15 @@ The `implementation` fields is how the script will be run. The `args` subfield i
 inputPath and outputPath will be auto filled by the Scheduler when a pipeline Template is ran.
 
 
-##### Optionnal : write your Dockerfile
+### Optionnal : write your Dockerfile
 
 A default Dockerfile is provided. It works in most of case but you're free to adapt it.
 
-##### Commit and push your component
+### Commit and push your component
 
 Commit all your work and push it to your git repo ( github or gitlab ). Note the name of the repo and the branch will be asked when installing the component in your Prevision library.
 
-#### Install it in your account
+### Install it in your account
 
 Go to your prevision account :
 
@@ -164,16 +165,16 @@ And input your repo information.
 
 If everything is ok, the component status will be list as `done` in about 5 minutes.
 
-Note that the component is not ran when installed. It only checks that the dockerFile works fine.
+Note that the component is not ran when installed. It only checks that the dockerFile works fine and all parameters in component.yaml are fine.
 
-The component will be be ran when a pipeline template using the component is scheduled to run.
+The component will be be ran only when a pipeline template using the component is scheduled to run.
 
 ## Trouble shooting
 
-If the status is not done after a few minutes ( ~10mn ) something went wrong. 
+If the status is not done after a few minutes ( ~10mn ) something went wrong ( except if you got a lot of module to install and setup in your Dockerfile )
 
 - check that your variable name in the yaml file and the argparser in python source code are the same.
-- check your hyphen and underscore ('-' and '_')
+- check your hyphen and underscore ('-' and '_') in input name and arguments name
 - check that all file are at the right place and that the command in the yaml file use the path built in the dockerfile 
 
 ```
@@ -189,7 +190,7 @@ RUN python -m pip install -r /requirements.txt
 
 COPY . /
 ```
-- you cannot use positionnal parameters in args
+- you cannot use positionnal parameters in args. Check that your script does not require positionnal argument.
 - IMPORTANT : if your component save a file ( output path ), it must create the directory structure. For example :
 
 ```
