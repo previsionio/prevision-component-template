@@ -5,14 +5,19 @@
 You want to create a custom component to be use in a Prevision.io 
 pipeline.  
 
+A custom component is a piece of code mostly use for transforming dataset.
+
 ## General setup
 
-In order to build a component and use it as a custom component in a pipeline, you gonna use at least 3 files :
+In order to build a component and use it as a custom component in a pipeline, you need 3 files :
+
 - A Dockerfile
 - A yaml description file
 - A python src code with arguments
 
-Note that only the Dockerfile and yaml file are mandatory 
+Note that only the Dockerfile and yaml file are mandatory.
+
+A default Dockerfile is provided and you do not need to modify it for simple component. For more complex components, with many modules, you could have to.
 
 ## What you going to do ?
 
