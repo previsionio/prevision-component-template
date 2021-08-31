@@ -87,7 +87,7 @@ There is two test to run before commiting your work.
 First check that using your code in commande line works with some data :
 
 ```
-python src/main.py -arg-1 value1 --src ~/Documents/Dataset/Tabular/data.csv  --dst  output/resultat.csv
+python src/main.py --arg-1 value1 --src ~/Documents/Dataset/Tabular/data.csv  --dst  output/resultat.csv
 ```
 
 Check that the command you used for test ( `python src/main.py` ) is the one provided in the yaml file and check the name of your args and the mandatory one
